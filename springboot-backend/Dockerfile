@@ -1,8 +1,13 @@
 FROM eclipse-temurin:17-jdk AS build
 WORKDIR /app
 
-# Copy and build the application
+# Copy the project files
 COPY . .
+
+# Grant execution permissions to mvnw
+RUN chmod +x mvnw
+
+# Build the application
 RUN ./mvnw clean package -DskipTests
 
 # Use a lightweight JRE base image
